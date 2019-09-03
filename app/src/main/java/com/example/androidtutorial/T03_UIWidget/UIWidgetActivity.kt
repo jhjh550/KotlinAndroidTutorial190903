@@ -13,10 +13,19 @@ class UIWidgetActivity : AppCompatActivity() {
         setContentView(R.layout.activity_uiwidget)
 
         btnHello.setOnClickListener {
-            Toast.makeText(this, "button clicked", Toast.LENGTH_SHORT).show()
+            val myText = editTextHello.text.toString()
+            Toast.makeText(this, myText, Toast.LENGTH_SHORT).show()
+            editTextHello.setText("")
         }
         myCheckBox.setOnCheckedChangeListener { compoundButton, checked ->
             Toast.makeText(this, "checked $checked", Toast.LENGTH_SHORT).show()
+        }
+        radioGroup.setOnCheckedChangeListener { radioGroup, id ->
+            when(id){
+                R.id.radio1->{Toast.makeText(this, "radio1", Toast.LENGTH_SHORT).show()}
+                R.id.radio2->{Toast.makeText(this, "radio2", Toast.LENGTH_SHORT).show()}
+                R.id.radio3->{Toast.makeText(this, "radio3", Toast.LENGTH_SHORT).show()}
+            }
         }
     }
 }
