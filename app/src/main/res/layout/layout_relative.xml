@@ -4,17 +4,22 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <Button
-        android:layout_centerInParent="true"
-        android:id="@+id/btnHello"
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="hello world"/>
-    <Button
-        android:layout_alignRight="@id/btnHello"
-        android:layout_below="@id/btnHello"
+        android:text="ID:"
+        android:textSize="50dp"
+        android:id="@+id/idTextView"/>
+    <EditText
+        android:textSize="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/idTextView"/>
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="abc"/>
+        android:textSize="50dp"
+        android:layout_below="@id/idTextView"
+        android:text="PW:" />
 
 </RelativeLayout>
