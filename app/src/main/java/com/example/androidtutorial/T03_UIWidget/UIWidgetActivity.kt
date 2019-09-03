@@ -15,5 +15,8 @@ class UIWidgetActivity : AppCompatActivity() {
         btnHello.setOnClickListener {
             Toast.makeText(this, "button clicked", Toast.LENGTH_SHORT).show()
         }
+        myCheckBox.setOnCheckedChangeListener { compoundButton, checked ->
+            Toast.makeText(this, "checked $checked", Toast.LENGTH_SHORT).show()
+        }
     }
 }
