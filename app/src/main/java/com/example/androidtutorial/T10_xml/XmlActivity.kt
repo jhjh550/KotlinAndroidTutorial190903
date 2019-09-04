@@ -2,7 +2,6 @@ package com.example.androidtutorial.T10_xml
 
 import android.os.AsyncTask
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.example.androidtutorial.R
 import kotlinx.android.synthetic.main.activity_xml.*
@@ -11,6 +10,13 @@ import org.xmlpull.v1.XmlPullParserFactory
 import java.io.StringReader
 
 class XmlActivity : AppCompatActivity() {
+
+    data class WeatherData(var hour:Int, var day:Int,
+                      var temp:Float, var wfKor:String)
+    val weatherList = ArrayList<WeatherData>()
+    enum class WeatherDataType{
+        None, Hour, Day, Temp, WfKor
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,8 +30,11 @@ class XmlActivity : AppCompatActivity() {
     inner class WeatherTask: AsyncTask<String, Unit, String>(){
         override fun onPostExecute(result: String?) {
             super.onPostExecute(result)
-            weatherTextView.setText(result)
-            Log.d("Weather", result)
+
+            weatherTextView.setText("")
+            for(data in weatherList){
+                weatherTextView.append(data.toString()+"\n")
+            }
         }
 
         override fun doInBackground(vararg params: String?): String {
@@ -37,22 +46,34 @@ class XmlActivity : AppCompatActivity() {
 //            xpp.setInput(url.openStream(), "utf-8")
             xpp.setInput(StringReader(weatherString))
             var eventType = xpp.eventType
-            var bRead = false
+            var type = WeatherDataType.None
+            var data = WeatherData(0,0,0F,"")
+
             while (eventType != XmlPullParser.END_DOCUMENT){
                 if(eventType == XmlPullParser.START_TAG){
-                    when(xpp.name){
-                        "hour","day","temp","wfKor"->{ bRead = true }
+                    type = when(xpp.name){
+                        "hour"->{ WeatherDataType.Hour }
+                        "day"->{ WeatherDataType.Day}
+                        "temp"->{ WeatherDataType.Temp }
+                        "wfKor"->{ WeatherDataType.WfKor }
+                        "data"->{
+                            data = WeatherData(0,0,0F, "")
+                            weatherList.add(data)
+                            WeatherDataType.None
+                        }
+                        else->{ WeatherDataType.None }
                     }
                 }else if(eventType == XmlPullParser.TEXT){
-                    if(bRead){
-                        res += xpp.text + " "
-                        bRead = false
+                    when(type){
+                        WeatherDataType.Hour->{ data.hour = xpp.text.toInt()}
+                        WeatherDataType.Day ->{ data.day = xpp.text.toInt() }
+                        WeatherDataType.Temp->{ data.temp = xpp.text.toFloat()}
+                        WeatherDataType.WfKor->{ data.wfKor = xpp.text }
                     }
+                    type = WeatherDataType.None
                 }
                 eventType = xpp.next()
             }
-
-
             return res
         }
 
