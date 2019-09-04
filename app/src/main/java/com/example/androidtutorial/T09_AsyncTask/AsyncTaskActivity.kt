@@ -19,6 +19,11 @@ class AsyncTaskActivity : AppCompatActivity() {
 
     inner class MyTask: AsyncTask<Int, Float, String>(){
 
+        override fun onPostExecute(result: String?) {
+            super.onPostExecute(result)
+            btnStart.setText(result)
+        }
+
         override fun onProgressUpdate(vararg values: Float?) {
             super.onProgressUpdate(*values)
             btnStart.setText("count ${values[0]}")
