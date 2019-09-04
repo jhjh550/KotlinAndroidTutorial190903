@@ -14,6 +14,7 @@ class MyActivity : AppCompatActivity() {
 
         btnStart.setOnClickListener {
             val intent = Intent(this, NewActivity::class.java)
+            intent.putExtra("hello", 123)
             startActivity(intent)
         }
     }
