@@ -30,11 +30,10 @@ class MyActivity : AppCompatActivity() {
 
         if(requestCode == REQ_CODE){
             if(resultCode == Activity.RESULT_OK){
-                data?.let {
-                    val str = it.getStringExtra("resValue")
-                    Toast.makeText(this, str, Toast.LENGTH_SHORT).show()
+                data?.run {
+                    val str = getStringExtra("resValue")
+                    Toast.makeText(this@MyActivity, str, Toast.LENGTH_SHORT).show()
                 }
-
             }
         }
     }
