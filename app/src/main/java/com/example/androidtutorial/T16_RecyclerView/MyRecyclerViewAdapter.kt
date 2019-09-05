@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.androidtutorial.R
 
@@ -29,7 +30,9 @@ class MyRecyclerViewAdapter (
 
 
     class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
+        lateinit var data:RecyclerViewActivity.MyData
         fun bind(data: RecyclerViewActivity.MyData) {
+            this.data = data
             titleTextView.text = data.title
             descTextView.text = data.desc
             itemImageView.setImageResource(data.img)
@@ -38,6 +41,12 @@ class MyRecyclerViewAdapter (
         val itemImageView: ImageView = itemView.findViewById(R.id.itemImageView)
         val titleTextView: TextView = itemView.findViewById(R.id.titleTextView)
         val descTextView: TextView = itemView.findViewById(R.id.descTextView)
+        init {
+            itemView.setOnClickListener {
+                Toast.makeText(itemView.context, data.toString(),
+                    Toast.LENGTH_SHORT).show()
+            }
+        }
     }
 }
 
