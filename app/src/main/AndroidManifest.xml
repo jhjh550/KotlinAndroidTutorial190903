@@ -12,16 +12,17 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".T11_ImageView.ImageViewActivity">
+        <activity android:name=".T12_WebView.WebViewActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".T10_xml.XmlActivity">
+        <activity android:name=".T11_ImageView.ImageViewActivity">
         </activity>
-        <activity android:name=".T09_AsyncTask.AsyncTaskActivity"></activity>
+        <activity android:name=".T10_xml.XmlActivity"></activity>
+        <activity android:name=".T09_AsyncTask.AsyncTaskActivity" />
         <activity android:name=".T08_Thread.ThreadActivity" />
         <activity android:name=".T07_AlertDialog.DialogActivity" />
         <activity android:name=".T06_CustomListView.MyCustomListViewActivity" />
