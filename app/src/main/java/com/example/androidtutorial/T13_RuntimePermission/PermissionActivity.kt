@@ -6,7 +6,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import com.example.androidtutorial.R
+import gun0912.tedbottompicker.TedBottomPicker
 import kotlinx.android.synthetic.main.activity_permission.*
 
 
@@ -15,10 +15,13 @@ class PermissionActivity : AppCompatActivity() {
     private val PERMISSION_REQ_CODE = 100
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_permission)
+        setContentView(com.example.androidtutorial.R.layout.activity_permission)
 
         btnPermission.setOnClickListener {
-            setupPermission()
+            TedBottomPicker.with(this)
+                .show {
+                    myImageView.setImageURI(it)
+                }
         }
     }
 
@@ -31,12 +34,33 @@ class PermissionActivity : AppCompatActivity() {
                 )){
                 AlertDialog.Builder(this)
                     .setTitle("Permission requested!!")
-                    .setMessage("Permission to write external storage is reuired fo this app")
+                    .setMessage("Permission to write external storage is required fo this app")
                     .setPositiveButton("OK"){dialogInterface, which ->
-                        ActivityCompat.requestPermissions(this,
-                            arrayOf(android.Manifest.permission.WRITE_EXTERNAL_STORAGE),
-                            PERMISSION_REQ_CODE)
+                        requestPermission()
                     }.show()
+            }else{
+                requestPermission()
+            }
+        }
+    }
+
+    private fun requestPermission(){
+        ActivityCompat.requestPermissions(this,
+            arrayOf(android.Manifest.permission.WRITE_EXTERNAL_STORAGE),
+            PERMISSION_REQ_CODE)
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+
+        if(requestCode == PERMISSION_REQ_CODE){
+            if(grantResults[0] == PackageManager.PERMISSION_GRANTED){
+
+            }else{
 
             }
         }

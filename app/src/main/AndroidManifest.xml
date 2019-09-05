@@ -13,13 +13,14 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".T13_RuntimePermission.PermissionActivity"></activity>
-        <activity android:name=".T12_WebView.WebViewActivity">
+        <activity android:name=".T13_RuntimePermission.PermissionActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".T12_WebView.WebViewActivity">
         </activity>
         <activity android:name=".T11_ImageView.ImageViewActivity"></activity>
         <activity android:name=".T10_xml.XmlActivity" />
