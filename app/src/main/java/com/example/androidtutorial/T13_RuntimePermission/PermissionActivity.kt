@@ -6,7 +6,6 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import com.bumptech.glide.Glide
 import gun0912.tedbottompicker.TedBottomPicker
 import kotlinx.android.synthetic.main.activity_permission.*
 
@@ -32,8 +31,7 @@ class PermissionActivity : AppCompatActivity() {
     private fun imagePick(){
         TedBottomPicker.with(this)
             .show {
-//                myImageView.setImageURI(it)
-                Glide.with(this).load(it).into(myImageView)
+                myImageView.setImageURI(it)
             }
     }
 
