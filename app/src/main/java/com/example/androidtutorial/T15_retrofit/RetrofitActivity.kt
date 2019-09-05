@@ -1,6 +1,7 @@
 package com.example.androidtutorial.T15_retrofit
 
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.androidtutorial.R
@@ -10,10 +11,17 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
+import retrofit2.http.Path
 
 interface MyTypicodeInterface{
     @GET("posts")
     fun getPosts(): Call<List<MyPost>>
+
+    @GET("posts/{id}")
+    fun getPost(@Path("id") id: Int): Call<MyPost>
+
+
+
 }
 
 data class MyPost(val userId:Int, val id:Int, val title:String,
@@ -32,6 +40,27 @@ class RetrofitActivity : AppCompatActivity() {
             .build()
 
         myTypicode = retrofit.create(MyTypicodeInterface::class.java)
+//        getPosts()
+        getPost(20)
+    }
+
+    private fun createPost(){
+
+    }
+
+    private fun getPost(id: Int){
+        val call = myTypicode.getPost(id)
+        call.enqueue(object : Callback<MyPost>{
+            override fun onFailure(call: Call<MyPost>, t: Throwable) {
+                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+            }
+
+            override fun onResponse(call: Call<MyPost>, response: Response<MyPost>) {
+                val post = response.body()
+                Log.d("post", post.toString())
+            }
+
+        })
     }
 
     private fun getPosts(){
@@ -48,6 +77,11 @@ class RetrofitActivity : AppCompatActivity() {
                     return
                 }
                 val posts = response.body()
+                posts?.let{
+                    for(post in posts){
+                        Log.d("post", post.toString())
+                    }
+                }
             }
 
         })
