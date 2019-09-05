@@ -10,7 +10,9 @@ import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.http.Body
 import retrofit2.http.GET
+import retrofit2.http.POST
 import retrofit2.http.Path
 
 interface MyTypicodeInterface{
@@ -20,8 +22,8 @@ interface MyTypicodeInterface{
     @GET("posts/{id}")
     fun getPost(@Path("id") id: Int): Call<MyPost>
 
-
-
+    @POST("posts")
+    fun createPost(@Body post: MyPost): Call<MyPost>
 }
 
 data class MyPost(val userId:Int, val id:Int, val title:String,
@@ -41,11 +43,23 @@ class RetrofitActivity : AppCompatActivity() {
 
         myTypicode = retrofit.create(MyTypicodeInterface::class.java)
 //        getPosts()
-        getPost(20)
+//        getPost(20)
+        createPost()
     }
 
     private fun createPost(){
+        val post = MyPost(11, 12, "my title", "my text")
+        val call = myTypicode.createPost(post)
+        call.enqueue(object : Callback<MyPost>{
+            override fun onFailure(call: Call<MyPost>, t: Throwable) {
+                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+            }
 
+            override fun onResponse(call: Call<MyPost>, response: Response<MyPost>) {
+                val post = response.body()
+            }
+
+        })
     }
 
     private fun getPost(id: Int){
