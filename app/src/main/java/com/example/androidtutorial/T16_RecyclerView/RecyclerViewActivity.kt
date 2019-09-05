@@ -2,7 +2,9 @@ package com.example.androidtutorial.T16_RecyclerView
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.androidtutorial.R
+import kotlinx.android.synthetic.main.activity_recycler_view.*
 
 class RecyclerViewActivity : AppCompatActivity() {
 
@@ -13,6 +15,9 @@ class RecyclerViewActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_recycler_view)
         generateData()
+
+        myRecyclerView.adapter = MyRecyclerViewAdapter(myList)
+        myRecyclerView.layoutManager = LinearLayoutManager(this)
     }
 
     private fun generateData(){
