@@ -1,8 +1,10 @@
 package com.example.androidtutorial.T14_JSON
 
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.example.androidtutorial.R
+import com.google.gson.Gson
 import org.json.JSONArray
 
 data class User(val name:String, val tel:String, val age:Int)
@@ -16,7 +18,15 @@ class JsonActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_json)
-        jsonParsing()
+        //jsonParsing()
+        jsonParsingGson()
+    }
+
+    private fun jsonParsingGson(){
+        val myList = Gson().fromJson(str, Array<User>::class.java)
+        for(obj in myList){
+            Log.d("gson", obj.toString())
+        }
     }
 
     private fun jsonParsing(){
@@ -29,6 +39,8 @@ class JsonActivity : AppCompatActivity() {
             val age = obj.getInt("age")
             myList.add(User(name, tel, age))
         }
-
+        for(obj in myList){
+            Log.d("json", obj.toString())
+        }
     }
 }
