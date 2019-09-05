@@ -6,6 +6,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import com.bumptech.glide.Glide
 import gun0912.tedbottompicker.TedBottomPicker
 import kotlinx.android.synthetic.main.activity_permission.*
 
@@ -18,11 +19,22 @@ class PermissionActivity : AppCompatActivity() {
         setContentView(com.example.androidtutorial.R.layout.activity_permission)
 
         btnPermission.setOnClickListener {
-            TedBottomPicker.with(this)
-                .show {
-                    myImageView.setImageURI(it)
-                }
+            val permission = ContextCompat.checkSelfPermission(
+                this, android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
+            if(permission != PackageManager.PERMISSION_GRANTED){
+                setupPermission()
+            }else{
+                imagePick()
+            }
         }
+    }
+
+    private fun imagePick(){
+        TedBottomPicker.with(this)
+            .show {
+//                myImageView.setImageURI(it)
+                Glide.with(this).load(it).into(myImageView)
+            }
     }
 
     private fun setupPermission(){
@@ -59,7 +71,7 @@ class PermissionActivity : AppCompatActivity() {
 
         if(requestCode == PERMISSION_REQ_CODE){
             if(grantResults[0] == PackageManager.PERMISSION_GRANTED){
-
+                imagePick()
             }else{
 
             }
