@@ -21,6 +21,8 @@ class ServiceActivity : AppCompatActivity() {
             val intent = Intent(this,
                 MyService::class.java)
             startService(intent)
+
+            MyIntentService.startActionBaz(this, "hello", "world")
         }
         btnServiceStop.setOnClickListener {
             val intent = Intent(this,
