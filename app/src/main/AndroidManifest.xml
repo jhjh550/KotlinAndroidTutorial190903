@@ -15,15 +15,16 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".T21_fragment.MyFragmentActivity">
+        <activity android:name=".T22_ViewPager.MyViewPagerActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".T20_BroadcastReceiver.BroadcastReceiverActivity">
+        <activity android:name=".T21_fragment.MyFragmentActivity">
         </activity>
+        <activity android:name=".T20_BroadcastReceiver.BroadcastReceiverActivity" />
 
         <service
             android:name=".T19_Service.MyIntentService"
@@ -37,7 +38,7 @@
             android:enabled="true"
             android:exported="true" />
 
-        <activity android:name=".T19_Service.ServiceActivity"></activity>
+        <activity android:name=".T19_Service.ServiceActivity" />
         <activity android:name=".T18_SQLite.SQLiteActivity" />
         <activity android:name=".T17_SharedPreferences.SharedPreperencesActivity" />
         <activity android:name=".P01_xml_recyclerview.XmlRecyclerViewActivity" />

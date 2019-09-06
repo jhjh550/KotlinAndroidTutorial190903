@@ -27,10 +27,49 @@ class MyFragmentActivity : AppCompatActivity(), View.OnClickListener {
                     supportFragmentManager
                         .beginTransaction()
                         .add(R.id.containerLayout, newFragment, "counter")
+                        .addToBackStack(null)
                         .commit()
                 }
             }
-            R.id.btnRemove->{}
+            R.id.btnRemove->{
+                if(fragment != null){
+                    supportFragmentManager
+                        .beginTransaction()
+                        .remove(fragment)
+                        .commit()
+                }
+            }
+            R.id.btnReplace->{
+                if(fragment != null){
+                    val newFragment = if(fragment.tag.equals("counter")){
+                        BlankFragment()
+                    }else{
+                        CounterFragment()
+                    }
+                    val tag = if(newFragment is CounterFragment) "counter" else "blank"
+
+                    supportFragmentManager
+                        .beginTransaction()
+                        .replace(R.id.containerLayout, newFragment, tag)
+                        .addToBackStack(null)
+                        .commit()
+                }
+            }
+            R.id.btnHide->{
+                if(fragment != null){
+                    if(fragment.isHidden) {
+                        supportFragmentManager
+                            .beginTransaction()
+                            .show(fragment)
+                            .commit()
+                    }else{
+                        supportFragmentManager
+                            .beginTransaction()
+                            .hide(fragment)
+                            .commit()
+                    }
+                }
+            }
         }
     }
 }
