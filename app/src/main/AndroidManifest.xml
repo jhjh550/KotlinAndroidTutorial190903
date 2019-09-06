@@ -15,16 +15,22 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".T18_SQLite.SQLiteActivity">
+        <service
+            android:name=".T19_Service.MyService"
+            android:enabled="true"
+            android:exported="true"></service>
+
+        <activity android:name=".T19_Service.ServiceActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".T17_SharedPreferences.SharedPreperencesActivity">
+        <activity android:name=".T18_SQLite.SQLiteActivity">
         </activity>
-        <activity android:name=".P01_xml_recyclerview.XmlRecyclerViewActivity"></activity>
+        <activity android:name=".T17_SharedPreferences.SharedPreperencesActivity" />
+        <activity android:name=".P01_xml_recyclerview.XmlRecyclerViewActivity" />
         <activity android:name=".T16_RecyclerView.RecyclerViewActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
