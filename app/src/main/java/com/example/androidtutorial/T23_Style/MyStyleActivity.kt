@@ -3,6 +3,7 @@ package com.example.androidtutorial.T23_Style
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
+import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
 import com.example.androidtutorial.R
 import kotlinx.android.synthetic.main.activity_my_style.*
@@ -23,11 +24,18 @@ class MyStyleActivity : AppCompatActivity() {
                 workingTextView.text = "$working$value"
             }
         }
-        zeroBtn.setOnClickListener(numberListener)
-        oneBtn.setOnClickListener(numberListener)
-        enterBtn.setOnClickListener {
-            selectedTextView.text = workingTextView.text
-            workingTextView.text = "0"
+//        zeroBtn.setOnClickListener(numberListener)
+//        oneBtn.setOnClickListener(numberListener)
+//        enterBtn.setOnClickListener {
+//            selectedTextView.text = workingTextView.text
+//            workingTextView.text = "0"
+//        }
+
+        for(i in 2 until rootLayout.childCount){
+            val row = rootLayout.getChildAt(i) as LinearLayout
+            for(k in 0 until row.childCount){
+                (row.getChildAt(k) as Button).text = "$i"
+            }
         }
     }
 }
