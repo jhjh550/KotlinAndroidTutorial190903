@@ -86,7 +86,8 @@ class RetrofitActivity : AppCompatActivity() {
 
             override fun onResponse(call: Call<List<MyPost>>, response: Response<List<MyPost>>) {
                 if(response.isSuccessful == false){
-                    Toast.makeText(this@RetrofitActivity, "error : ${response.code()}",
+                    Toast.makeText(this@RetrofitActivity,
+                        "error : ${response.code()}",
                         Toast.LENGTH_SHORT).show()
                     return
                 }

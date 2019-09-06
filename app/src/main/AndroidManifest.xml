@@ -15,6 +15,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+        <activity android:name=".T17_SharedPreferences.SharedPreperencesActivity"></activity>
         <activity android:name=".P01_xml_recyclerview.XmlRecyclerViewActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -29,7 +30,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".T15_retrofit.RetrofitActivity"></activity>
+        <activity android:name=".T15_retrofit.RetrofitActivity" />
         <activity android:name=".T14_JSON.JsonActivity" />
         <activity android:name=".T13_RuntimePermission.PermissionActivity" />
         <activity android:name=".T12_WebView.WebViewActivity" />

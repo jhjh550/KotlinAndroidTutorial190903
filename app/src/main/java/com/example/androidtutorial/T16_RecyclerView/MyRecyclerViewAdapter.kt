@@ -43,7 +43,8 @@ class MyRecyclerViewAdapter (
         val descTextView: TextView = itemView.findViewById(R.id.descTextView)
         init {
             itemView.setOnClickListener {
-                Toast.makeText(itemView.context, data.toString(),
+                Toast.makeText(itemView.context,
+                    data.toString(),
                     Toast.LENGTH_SHORT).show()
             }
         }
