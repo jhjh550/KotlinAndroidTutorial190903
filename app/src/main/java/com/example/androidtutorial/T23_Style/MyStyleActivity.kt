@@ -24,18 +24,35 @@ class MyStyleActivity : AppCompatActivity() {
                 workingTextView.text = "$working$value"
             }
         }
-//        zeroBtn.setOnClickListener(numberListener)
-//        oneBtn.setOnClickListener(numberListener)
-//        enterBtn.setOnClickListener {
-//            selectedTextView.text = workingTextView.text
-//            workingTextView.text = "0"
-//        }
 
-        for(i in 2 until rootLayout.childCount){
+        var number = 1
+        for(i in 2 until rootLayout.childCount - 1){
             val row = rootLayout.getChildAt(i) as LinearLayout
             for(k in 0 until row.childCount){
-                (row.getChildAt(k) as Button).text = "$i"
+                val btn = row.getChildAt(k) as Button
+                btn.text = "$number"
+                number += 1
+                btn.setOnClickListener(numberListener)
             }
         }
+        val index = rootLayout.childCount - 1
+        val lastRow = rootLayout.getChildAt(index) as LinearLayout
+        val zeroBtn = lastRow.getChildAt(1) as Button
+        zeroBtn.text = "0"
+        zeroBtn.setOnClickListener(numberListener)
+
+        val enterBtn = lastRow.getChildAt(2) as Button
+        enterBtn.text = "enter"
+        enterBtn.setOnClickListener {
+            selectedTextView.text = workingTextView.text
+            workingTextView.text = "0"
+        }
+
+        val deleteBtn = lastRow.getChildAt(0) as Button
+        deleteBtn.text = "delete"
+        deleteBtn.setOnClickListener {
+            workingTextView.text = "0"
+        }
+
     }
 }
