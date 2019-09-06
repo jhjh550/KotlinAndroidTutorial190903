@@ -8,9 +8,36 @@
     tools:context=".T21_fragment.MyFragmentActivity">
 
     <fragment
-        tools:layout="@layout/fragment_blank"
+        tools:layout="@layout/fragment_counter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:name="com.example.androidtutorial.T21_fragment.CounterFragment"
         android:id="@+id/frament1"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnAdd"
+        android:text="add"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnRemove"
+        android:text="remove"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnReplace"
+        android:text="replace"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnHide"
+        android:text="hide"/>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/containerLayout"/>
+
+
+
 </LinearLayout>
