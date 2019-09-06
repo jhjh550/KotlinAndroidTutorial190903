@@ -29,7 +29,15 @@ class MyDBHandler(context: Context) {
     }
 
     fun selectAll():String{
-
+        var res = ""
+        val cursor = helper.readableDatabase.query("student", null, null, null, null, null, null)
+        while(cursor.moveToNext()){
+            val name = cursor.getString( cursor.getColumnIndex("name"))
+            val age = cursor.getInt( cursor.getColumnIndex("age"))
+            val address = cursor.getString( cursor.getColumnIndex("address"))
+            res += "name: $name age: $age address: $address \n"
+        }
+        return res
     }
 
 }
