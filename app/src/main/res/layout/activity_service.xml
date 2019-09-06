@@ -15,5 +15,10 @@
         android:layout_height="wrap_content"
         android:id="@+id/btnServiceStop"
         android:text="stop"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnRandomNumber"
+        android:text="Random Number"/>
 
 </LinearLayout>
